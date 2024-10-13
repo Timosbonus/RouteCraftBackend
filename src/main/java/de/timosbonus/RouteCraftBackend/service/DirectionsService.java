@@ -1,0 +1,14 @@
+package de.timosbonus.RouteCraftBackend.service;
+
+import de.timosbonus.RouteCraftBackend.entity.Directions;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+public interface DirectionsService {
+    List<Directions> findAllWithId(String id);
+    Directions findById(int id);
+    Directions save(Directions directions);
+    Directions update(Directions directions);
+    void delete(Directions directions);
+}
