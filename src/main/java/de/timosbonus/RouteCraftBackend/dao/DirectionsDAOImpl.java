@@ -20,34 +20,33 @@ public class DirectionsDAOImpl implements DirectionsDAO { // Implementiere das I
 
     @Override
     public List<Directions> findAllWithId(String id) {
-        // Erstelle die Abfrage
+        // Create query
         TypedQuery<Directions> query = em.createQuery("SELECT d FROM Directions d WHERE d.routeId = :routeId", Directions.class);
-        query.setParameter("routeId", id); // Setze den Parameter für die route_id
+        query.setParameter("routeId", id); // setting param for query
 
-        // Führe die Abfrage aus und hole die Ergebnisse
-        List<Directions> directions = query.getResultList();
-        return directions;
+        // get results List from query and return
+        return query.getResultList();
     }
 
     @Override
     public Directions findById(int id) {
-        // Finde eine Direction basierend auf der ID
+        // find direction based on generated Id
         return em.find(Directions.class, id);
     }
 
     @Override
     public Directions save(Directions directions) {
-        em.persist(directions); // Speichern der neuen Direction
+        em.persist(directions); // Save a new direction
         return directions;
     }
 
     @Override
     public Directions update(Directions directions) {
-        return em.merge(directions); // Aktualisieren der Direction
+        return em.merge(directions); // updates an existing dir
     }
 
     @Override
     public void delete(Directions directions) {
-        em.remove(em.contains(directions) ? directions : em.merge(directions)); // Löschen der Direction
+        em.remove(em.contains(directions) ? directions : em.merge(directions)); // delete a direction
     }
 }

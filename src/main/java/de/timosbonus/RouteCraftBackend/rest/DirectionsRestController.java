@@ -18,7 +18,7 @@ public class DirectionsRestController {
         this.directionsService = directionsService;
     }
 
-    @GetMapping("/directions/{route_id}")
+    @GetMapping("/directions/spec/{route_id}")
     public List<Directions> findAllWithId(@PathVariable("route_id") String routeId) {
         return directionsService.findAllWithId(routeId);
     }

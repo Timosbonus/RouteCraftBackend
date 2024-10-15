@@ -1,7 +1,6 @@
 package de.timosbonus.RouteCraftBackend.service;
 
 import de.timosbonus.RouteCraftBackend.entity.Directions;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
