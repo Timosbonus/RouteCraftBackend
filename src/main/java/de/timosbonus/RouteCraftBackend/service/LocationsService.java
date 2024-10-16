@@ -10,4 +10,5 @@ public interface LocationsService {
     Locations save(Locations locations);
     Locations update(Locations locations);
     void delete(Locations locations);
+    void updateSaveDeleteArray(String route_id, List<Locations> locations);
 }

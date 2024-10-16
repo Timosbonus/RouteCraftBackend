@@ -43,5 +43,10 @@ public class DirectionsRestController {
         Directions directions = directionsService.findById(id);
         directionsService.delete(directions);
     }
+
+    @PutMapping("/directions/{route_id}")
+    public void updateSaveDeleteArray(@PathVariable String route_id, @RequestBody List<Directions> directions) {
+        directionsService.updateSaveDeleteArray(route_id, directions);
+    }
 }
 

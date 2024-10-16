@@ -5,7 +5,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public class LocationsDAOImpl implements LocationsDAO {
@@ -47,5 +49,35 @@ public class LocationsDAOImpl implements LocationsDAO {
     @Override
     public void delete(Locations locations) {
         em.remove(em.contains(locations) ? locations : em.merge(locations));
+    }
+
+    // method accepts Array of Locations and saves them in db
+    @Override
+    public void updateSaveDeleteArray(String route_id, List<Locations> locations) {
+        // gets all the existing Locations with the same route_id
+        List<Locations> existingLocations = findAllWithId(route_id);
+
+        // saves existingLocations in Set
+        Set<Integer> encounteredIds = new HashSet<>();
+        for (Locations locs : existingLocations) {
+            encounteredIds.add(locs.getId());
+        }
+
+        // checks existingLocations if already existing and adds or updates
+        for (Locations locs : locations) {
+            int currentId = locs.getId();
+            if (encounteredIds.contains(currentId)) {
+                em.merge(locs);
+            } else {
+                em.persist(locs);
+            }
+            encounteredIds.remove(currentId); // deletes Id afterwards
+        }
+
+        // deletes the remaining Locations by Id
+        for (int id : encounteredIds) {
+            Locations locs = em.find(Locations.class, id);
+            delete(locs);
+        }
     }
 }

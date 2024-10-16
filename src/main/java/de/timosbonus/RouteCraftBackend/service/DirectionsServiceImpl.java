@@ -45,4 +45,10 @@ public class DirectionsServiceImpl implements DirectionsService {
     public void delete(Directions directions) {
         directionsDAO.delete(directions);
     }
+
+    @Override
+    @Transactional
+    public void updateSaveDeleteArray(String route_id, List<Directions> directions) {
+        directionsDAO.updateSaveDeleteArray(route_id, directions);
+    }
 }

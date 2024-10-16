@@ -5,7 +5,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public class DirectionsDAOImpl implements DirectionsDAO { // Implementiere das Interface
@@ -48,5 +50,36 @@ public class DirectionsDAOImpl implements DirectionsDAO { // Implementiere das I
     @Override
     public void delete(Directions directions) {
         em.remove(em.contains(directions) ? directions : em.merge(directions)); // delete a direction
+    }
+
+
+    // method accepts Array of Directions and saves them in db
+    @Override
+    public void updateSaveDeleteArray(String route_id, List<Directions> directions) {
+        // gets all the existing Directions with the same route_id
+        List<Directions> existingDirections = findAllWithId(route_id);
+
+        // saves existingDirections in Set
+        Set<Integer> encounteredIds = new HashSet<>();
+        for (Directions dir : existingDirections) {
+            encounteredIds.add(dir.getId());
+        }
+
+        // checks existingDirections if already existing and adds or updates
+        for (Directions dir : directions) {
+            int currentId = dir.getId();
+            if (encounteredIds.contains(currentId)) {
+                em.merge(dir);
+            } else {
+                em.persist(dir);
+            }
+            encounteredIds.remove(currentId); // deletes Id afterwards
+        }
+
+        // deletes the remaining Directions by Id
+        for (int id : encounteredIds) {
+            Directions dir = em.find(Directions.class, id);
+            delete(dir);
+        }
     }
 }

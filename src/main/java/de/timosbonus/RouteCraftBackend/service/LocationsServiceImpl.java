@@ -45,4 +45,10 @@ public class LocationsServiceImpl implements LocationsService {
     public void delete(Locations locations) {
         locationsDAO.delete(locations);
     }
+
+    @Override
+    @Transactional
+    public void updateSaveDeleteArray(String route_id, List<Locations> locations) {
+        locationsDAO.updateSaveDeleteArray(route_id, locations);
+    }
 }
