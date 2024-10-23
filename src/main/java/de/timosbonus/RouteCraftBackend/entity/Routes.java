@@ -1,7 +1,7 @@
 package de.timosbonus.RouteCraftBackend.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "routes")
@@ -18,14 +18,14 @@ public class Routes {
     private int defaultBreakDuration;
 
     @Column(name = "start_time")
-    private LocalDate startTime;
+    private LocalTime startTime;
 
     @Column(name = "route_id")
     private String routeId;
 
     public Routes() {}
 
-    public Routes(String name, int defaultBreakDuration, LocalDate startTime) {
+    public Routes(String name, int defaultBreakDuration, LocalTime startTime) {
         this.name = name;
         this.defaultBreakDuration = defaultBreakDuration;
         this.startTime = startTime;
@@ -55,11 +55,11 @@ public class Routes {
         this.defaultBreakDuration = defaultBreakDuration;
     }
 
-    public LocalDate getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDate startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 

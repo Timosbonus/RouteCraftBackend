@@ -48,7 +48,7 @@ public class LocationsServiceImpl implements LocationsService {
 
     @Override
     @Transactional
-    public void updateSaveDeleteArray(String route_id, List<Locations> locations) {
-        locationsDAO.updateSaveDeleteArray(route_id, locations);
+    public List<Locations> updateSaveDeleteArray(String route_id, List<Locations> locations) {
+        return locationsDAO.updateSaveDeleteArray(route_id, locations);
     }
 }

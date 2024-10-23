@@ -45,8 +45,8 @@ public class LocationsRestController {
     }
 
     @PutMapping("/locations/{route_id}")
-    public void updateSaveDeleteArray(@PathVariable String route_id, @RequestBody List<Locations> locations) {
-        locationsService.updateSaveDeleteArray(route_id, locations);
+    public List<Locations> updateSaveDeleteArray(@PathVariable String route_id, @RequestBody List<Locations> locations) {
+        return locationsService.updateSaveDeleteArray(route_id, locations);
     }
 
 }

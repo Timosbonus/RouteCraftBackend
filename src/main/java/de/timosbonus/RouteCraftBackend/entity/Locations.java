@@ -1,5 +1,8 @@
 package de.timosbonus.RouteCraftBackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,6 +20,7 @@ public class Locations {
     private int breakDuration;
 
     @Column(name = "display_name")
+    @JsonProperty("display_name") // annotation for different Json name then String name
     private String displayName;
 
     @Column(name = "lat")
@@ -25,14 +29,25 @@ public class Locations {
     @Column(name = "lon")
     private String lon;
 
+    @Column(name = "place_id")
+    @JsonProperty("place_id")
+    private String placeId;
+
+    @Column(name = "current_index")
+    @JsonProperty("current_index")
+    private int currentIndex;
+
+
     public Locations() {}
 
-    public Locations(String routeId, int breakDuration, String displayName, String lat, String lon) {
+    public Locations(String routeId, int breakDuration, String displayName, String lat, String lon, String placeId, int currentIndex) {
         this.routeId = routeId;
         this.breakDuration = breakDuration;
         this.displayName = displayName;
         this.lat = lat;
         this.lon = lon;
+        this.placeId = placeId;
+        this.currentIndex = currentIndex;
     }
 
     public int getId() {
@@ -81,5 +96,22 @@ public class Locations {
 
     public void setLon(String lon) {
         this.lon = lon;
+    }
+
+
+    public String getPlaceId() {
+        return placeId;
+    }
+
+    public void setPlaceId(String placeId) {
+        this.placeId = placeId;
+    }
+
+    public int getCurrentIndex() {
+        return currentIndex;
+    }
+
+    public void setCurrentIndex(int currentIndex) {
+        this.currentIndex = currentIndex;
     }
 }

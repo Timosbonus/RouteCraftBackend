@@ -51,9 +51,9 @@ public class LocationsDAOImpl implements LocationsDAO {
         em.remove(em.contains(locations) ? locations : em.merge(locations));
     }
 
-    // method accepts Array of Locations and saves them in db
+    // method accepts Array of Locations and saves, updates or deletes them in db
     @Override
-    public void updateSaveDeleteArray(String route_id, List<Locations> locations) {
+    public List<Locations> updateSaveDeleteArray(String route_id, List<Locations> locations) {
         // gets all the existing Locations with the same route_id
         List<Locations> existingLocations = findAllWithId(route_id);
 
@@ -79,5 +79,6 @@ public class LocationsDAOImpl implements LocationsDAO {
             Locations locs = em.find(Locations.class, id);
             delete(locs);
         }
+        return findAllWithId(route_id);
     }
 }
