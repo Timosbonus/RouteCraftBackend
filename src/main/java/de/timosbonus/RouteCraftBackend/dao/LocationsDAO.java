@@ -1,6 +1,5 @@
 package de.timosbonus.RouteCraftBackend.dao;
 
-import de.timosbonus.RouteCraftBackend.entity.Directions;
 import de.timosbonus.RouteCraftBackend.entity.Locations;
 
 import java.util.List;

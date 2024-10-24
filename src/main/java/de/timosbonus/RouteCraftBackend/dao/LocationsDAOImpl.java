@@ -79,6 +79,9 @@ public class LocationsDAOImpl implements LocationsDAO {
             Locations locs = em.find(Locations.class, id);
             delete(locs);
         }
+
+
+
         return findAllWithId(route_id);
     }
 }
