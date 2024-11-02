@@ -18,14 +18,8 @@ public class Directions {
     @JsonProperty("route_id")
     private String routeId;
 
-    @Type(JsonType.class)
-    @Column(columnDefinition = "routes")
-    private String routes;
-
-    @Type(JsonType.class)
-    @Column(columnDefinition = "waypoints")
-    private String waypoints;
-
+    @Column(name = "geometry")
+    private String geometry;
 
     @Column(name = "location_connection")
     @JsonProperty("location_connection")
@@ -40,11 +34,10 @@ public class Directions {
 
     public Directions() {}
 
-    public Directions(int id, String routeId, String routes, String waypoints, String locationConnection, int currentIndex) {
+    public Directions(int id, String routeId, String geometry, String locationConnection, int currentIndex) {
         this.id = id;
         this.routeId = routeId;
-        this.routes = routes;
-        this.waypoints = waypoints;
+        this.geometry = geometry;
         this.locationConnection = locationConnection;
         this.currentIndex = currentIndex;
     }
@@ -65,20 +58,12 @@ public class Directions {
         this.routeId = routeId;
     }
 
-    public String getRoutes() {
-        return routes;
+    public String getGeometry() {
+        return geometry;
     }
 
-    public void setRoutes(String routes) {
-        this.routes = routes;
-    }
-
-    public String getWaypoints() {
-        return waypoints;
-    }
-
-    public void setWaypoints(String waypoints) {
-        this.waypoints = waypoints;
+    public void setGeometry(String geometry) {
+        this.geometry = geometry;
     }
 
     public String getLocationConnection() {
@@ -107,3 +92,4 @@ public class Directions {
                 '}';
     }
 }
+
