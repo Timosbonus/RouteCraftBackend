@@ -19,6 +19,11 @@ public class DirectionsServiceImpl implements DirectionsService {
     }
 
     @Override
+    public List<Directions> getAll() {
+        return directionsDAO.getAll();
+    }
+
+    @Override
     public List<Directions> findAllWithId(String id) {
         return directionsDAO.findAllWithId(id);
     }
@@ -48,7 +53,7 @@ public class DirectionsServiceImpl implements DirectionsService {
 
     @Override
     @Transactional
-    public void updateSaveDeleteArray(String route_id, List<Directions> directions) {
-        directionsDAO.updateSaveDeleteArray(route_id, directions);
+    public List<Directions> updateSaveDeleteArray(String route_id, List<Directions> directions) {
+        return directionsDAO.updateSaveDeleteArray(route_id, directions);
     }
 }

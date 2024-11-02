@@ -18,6 +18,11 @@ public class DirectionsRestController {
         this.directionsService = directionsService;
     }
 
+    @GetMapping("/directions")
+    public List<Directions> getAllDirections() {
+        return directionsService.getAll();
+    }
+
     @GetMapping("/directions/spec/{route_id}")
     public List<Directions> findAllWithId(@PathVariable("route_id") String routeId) {
         return directionsService.findAllWithId(routeId);

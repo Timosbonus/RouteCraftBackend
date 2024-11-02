@@ -11,8 +11,9 @@ public class Directions {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @JsonProperty("route_id")
+
     @Column(name = "route_id")
+    @JsonProperty("route_id")
     private String routeId;
 
     @Column(name = "routes")
@@ -21,12 +22,14 @@ public class Directions {
     @Column(name = "waypoints")
     private String waypoints;
 
-    @JsonProperty("location_connection")
+
     @Column(name = "location_connection")
+    @JsonProperty("location_connection")
     private String locationConnection;
 
-    @JsonProperty("current_index")
+
     @Column(name = "current_index")
+    @JsonProperty("current_index")
     private int currentIndex;
 
 
