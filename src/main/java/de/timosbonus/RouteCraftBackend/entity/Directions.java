@@ -1,5 +1,6 @@
 package de.timosbonus.RouteCraftBackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,6 +11,7 @@ public class Directions {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @JsonProperty("route_id")
     @Column(name = "route_id")
     private String routeId;
 
@@ -19,13 +21,25 @@ public class Directions {
     @Column(name = "waypoints")
     private String waypoints;
 
+    @JsonProperty("location_connection")
+    @Column(name = "location_connection")
+    private String locationConnection;
+
+    @JsonProperty("current_index")
+    @Column(name = "current_index")
+    private int currentIndex;
+
+
 
     public Directions() {}
 
-    public Directions(String routeId, String routes, String waypoints) {
+    public Directions(int id, String routeId, String routes, String waypoints, String locationConnection, int currentIndex) {
+        this.id = id;
         this.routeId = routeId;
         this.routes = routes;
         this.waypoints = waypoints;
+        this.locationConnection = locationConnection;
+        this.currentIndex = currentIndex;
     }
 
     public int getId() {
@@ -58,6 +72,22 @@ public class Directions {
 
     public void setWaypoints(String waypoints) {
         this.waypoints = waypoints;
+    }
+
+    public String getLocationConnection() {
+        return locationConnection;
+    }
+
+    public void setLocationConnection(String locationConnection) {
+        this.locationConnection = locationConnection;
+    }
+
+    public int getCurrentIndex() {
+        return currentIndex;
+    }
+
+    public void setCurrentIndex(int currentIndex) {
+        this.currentIndex = currentIndex;
     }
 
     @Override
