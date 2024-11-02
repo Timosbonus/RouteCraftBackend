@@ -50,8 +50,8 @@ public class DirectionsRestController {
     }
 
     @PutMapping("/directions/{route_id}")
-    public void updateSaveDeleteArray(@PathVariable String route_id, @RequestBody List<Directions> directions) {
-        directionsService.updateSaveDeleteArray(route_id, directions);
+    public List<Directions> updateSaveDeleteArray(@PathVariable String route_id, @RequestBody List<Directions> directions) {
+        return directionsService.updateSaveDeleteArray(route_id, directions);
     }
 }
 
