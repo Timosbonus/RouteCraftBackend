@@ -11,6 +11,5 @@ public interface DirectionsDAO {
     Directions update(Directions directions);
     void delete(Directions directions);
     List<Directions> updateSaveDeleteArray(String route_id, List<Directions> directions);
-
     List<Directions> getAll();
 }
