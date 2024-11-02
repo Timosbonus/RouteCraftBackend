@@ -22,13 +22,21 @@ public class LocationsDAOImpl implements LocationsDAO {
 
     @Override
     public List<Locations> findAllWithId(String id) {
-        // create query
+        // Create query
         TypedQuery<Locations> query = em.createQuery("SELECT d FROM Locations d WHERE d.routeId = :routeId ORDER BY d.currentIndex ASC", Locations.class);
-        query.setParameter("routeId", id); // setting param for query
+        query.setParameter("routeId", id); // Set parameter for query
 
-        // get result List from query and return
-        return query.getResultList();
+        // Get result list from query
+        List<Locations> locationsList = query.getResultList();
+
+        // Give every location the correct currentIndex
+        for (int i = 0; i < locationsList.size(); i++) {
+            locationsList.get(i).setCurrentIndex(i);
+        }
+        // Return the result list
+        return locationsList;
     }
+
 
     @Override
     public Locations findById(int id) {
@@ -79,8 +87,6 @@ public class LocationsDAOImpl implements LocationsDAO {
             Locations locs = em.find(Locations.class, id);
             delete(locs);
         }
-
-
 
         return findAllWithId(route_id);
     }

@@ -24,10 +24,18 @@ public class DirectionsDAOImpl implements DirectionsDAO { // Implementiere das I
     public List<Directions> findAllWithId(String id) {
         // Create query
         TypedQuery<Directions> query = em.createQuery("SELECT d FROM Directions d WHERE d.routeId = :routeId  ORDER BY d.currentIndex ASC", Directions.class);
+
         query.setParameter("routeId", id); // setting param for query
 
-        // get results List from query and return
-        return query.getResultList();
+        // get results List from query
+        List<Directions> directionsList = query.getResultList();
+
+        // give every direction the correct current Index
+        for (int i = 0; i < directionsList.size(); i++) {
+            directionsList.get(i).setCurrentIndex(i);
+        }
+
+        return directionsList;
     }
 
     @Override
