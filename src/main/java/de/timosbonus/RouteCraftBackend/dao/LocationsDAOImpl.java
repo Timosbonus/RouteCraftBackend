@@ -23,7 +23,7 @@ public class LocationsDAOImpl implements LocationsDAO {
     @Override
     public List<Locations> findAllWithId(String id) {
         // create query
-        TypedQuery<Locations> query = em.createQuery("SELECT d FROM Locations d WHERE d.routeId = :routeId", Locations.class);
+        TypedQuery<Locations> query = em.createQuery("SELECT d FROM Locations d WHERE d.routeId = :routeId ORDER BY d.currentIndex ASC", Locations.class);
         query.setParameter("routeId", id); // setting param for query
 
         // get result List from query and return
