@@ -1,7 +1,9 @@
 package de.timosbonus.RouteCraftBackend.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "directions")
@@ -16,10 +18,12 @@ public class Directions {
     @JsonProperty("route_id")
     private String routeId;
 
-    @Column(name = "routes")
+    @Type(JsonType.class)
+    @Column(columnDefinition = "routes")
     private String routes;
 
-    @Column(name = "waypoints")
+    @Type(JsonType.class)
+    @Column(columnDefinition = "waypoints")
     private String waypoints;
 
 
