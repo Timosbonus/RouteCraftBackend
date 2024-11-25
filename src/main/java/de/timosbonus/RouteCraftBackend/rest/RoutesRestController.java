@@ -35,12 +35,13 @@ public class RoutesRestController {
 
     @PutMapping("/routes")
     public Routes update(@RequestBody Routes routes) {
+        delete(routes.getRouteId());
         return routesService.update(routes);
     }
 
-    @DeleteMapping("/routes/{id}")
-    public Routes delete(@PathVariable String id) {
-        Routes routes = routesService.findById(id);
+    @DeleteMapping("/routes/{routeId}")
+    public Routes delete(@PathVariable String routeId) {
+        Routes routes = routesService.findById(routeId);
         routesService.delete(routes);
         return routes;
     }
