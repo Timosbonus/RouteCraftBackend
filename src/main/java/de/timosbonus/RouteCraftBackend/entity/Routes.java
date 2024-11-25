@@ -11,9 +11,6 @@ public class Routes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name")
-    private String name;
-
     @Column(name = "default_break_duration")
     private int defaultBreakDuration;
 
@@ -25,10 +22,10 @@ public class Routes {
 
     public Routes() {}
 
-    public Routes(String name, int defaultBreakDuration, LocalTime startTime) {
-        this.name = name;
+    public Routes(int defaultBreakDuration, LocalTime startTime, String routeId) {
         this.defaultBreakDuration = defaultBreakDuration;
         this.startTime = startTime;
+        this.routeId = routeId;
     }
 
     public int getId() {
@@ -37,14 +34,6 @@ public class Routes {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getDefaultBreakDuration() {
@@ -75,7 +64,6 @@ public class Routes {
     public String toString() {
         return "Routes{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
                 ", defaultBreakDuration=" + defaultBreakDuration +
                 ", startTime=" + startTime +
                 ", routeId='" + routeId + '\'' +

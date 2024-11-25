@@ -24,8 +24,8 @@ public class RoutesServiceImpl implements RoutesService {
     }
 
     @Override
-    public Routes findById(int id) {
-        return routesDAO.findById(id);
+    public Routes findById(String routeId) {
+        return routesDAO.findById(routeId);
     }
 
     @Transactional

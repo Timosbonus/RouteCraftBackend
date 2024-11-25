@@ -23,9 +23,9 @@ public class RoutesRestController {
         return routesService.findAll();
     }
 
-    @GetMapping("/routes/{id}")
-    public Routes findById(@PathVariable int id) {
-        return routesService.findById(id);
+    @GetMapping("/routes/{routeId}")
+    public Routes findById(@PathVariable String routeId) {
+        return routesService.findById(routeId);
     }
 
     @PostMapping("/routes")
@@ -39,7 +39,7 @@ public class RoutesRestController {
     }
 
     @DeleteMapping("/routes/{id}")
-    public Routes delete(@PathVariable int id) {
+    public Routes delete(@PathVariable String id) {
         Routes routes = routesService.findById(id);
         routesService.delete(routes);
         return routes;

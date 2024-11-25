@@ -23,8 +23,10 @@ public class RoutesDAOImpl implements RoutesDAO {
     }
 
     @Override
-    public Routes findById(int id) {
-        return em.find(Routes.class, id);
+    public Routes findById(String id) {
+        TypedQuery<Routes> query = em.createQuery("SELECT r FROM Routes r WHERE r.routeId = :routeId", Routes.class);
+        query.setParameter("routeId", id);
+        return query.getSingleResult();
     }
 
     @Override
