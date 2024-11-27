@@ -35,7 +35,6 @@ public class RoutesRestController {
 
     @PutMapping("/routes")
     public Routes update(@RequestBody Routes routes) {
-        delete(routes.getRouteId());
         return routesService.update(routes);
     }
 
