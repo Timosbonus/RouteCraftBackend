@@ -10,4 +10,5 @@ public interface RoutesService {
     Routes save(Routes routes);
     Routes update(Routes routes);
     void delete(Routes routes);
+    boolean exists(String id);
 }

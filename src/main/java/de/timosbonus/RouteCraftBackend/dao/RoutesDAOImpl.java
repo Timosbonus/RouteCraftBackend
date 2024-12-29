@@ -44,4 +44,14 @@ public class RoutesDAOImpl implements RoutesDAO {
     public void delete(Routes routes) {
         em.remove(em.contains(routes) ? routes : em.merge(routes));
     }
+
+    @Override
+    public boolean exists(String routeId) {
+        TypedQuery<Long> query = em.createQuery(
+                "SELECT COUNT(r) FROM Routes r WHERE r.routeId = :routeId", Long.class
+        );
+        query.setParameter("routeId", routeId);
+        Long count = query.getSingleResult();
+        return count > 0;
+    }
 }

@@ -45,4 +45,9 @@ public class RoutesServiceImpl implements RoutesService {
     public void delete(Routes routes) {
         routesDAO.delete(routes);
     }
+
+    @Override
+    public boolean exists(String id) {
+        return routesDAO.exists(id);
+    }
 }

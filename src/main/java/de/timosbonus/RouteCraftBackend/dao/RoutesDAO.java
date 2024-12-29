@@ -10,4 +10,5 @@ public interface RoutesDAO {
     Routes save(Routes routes);
     Routes update(Routes routes);
     void delete(Routes routes);
+    boolean exists(String routeId);
 }
